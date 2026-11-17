@@ -12,6 +12,7 @@
     "start:worker": "node src/worker.js",
     "test": "node --test",
     "test:watch": "node --test --watch",
+    "lint": "node scripts/lint.js",
     "bench": "node bench/run.js"
   },
   "keywords": [
