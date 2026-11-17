@@ -11,7 +11,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 const STATIC_DIR = path.join(ROOT, 'public');
 
 const html = `<!doctype html><html><head><title>Raw HTTP Server</title></head><body><h1>Raw HTTP Server</h1></body></html>`;
-const indexHtml = fs.readFileSync(path.join(STATIC_DIR, 'index.html'));
+const indexPath = path.join(STATIC_DIR, 'index.html');
 
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, 'http://localhost');
@@ -33,8 +33,9 @@ const server = http.createServer((req, res) => {
     return res.end(body);
   }
   if (url.pathname === '/static/index.html') {
-    res.writeHead(200, { 'Content-Type': 'text/html', 'Content-Length': indexHtml.length });
-    return res.end(indexHtml);
+    const { size } = fs.statSync(indexPath);
+    res.writeHead(200, { 'Content-Type': 'text/html', 'Content-Length': size });
+    return fs.createReadStream(indexPath).pipe(res);
   }
   res.writeHead(404, { 'Content-Length': 0 });
   res.end();

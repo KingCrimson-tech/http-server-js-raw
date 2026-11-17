@@ -3,7 +3,7 @@
 ## System
 
 ```
-Date: 2026-11-17T07:01:32.392Z
+Date: 2026-11-17T07:03:38.222Z
 Node: v24.19.0
 CPU: AMD Ryzen 5 5600H with Radeon Graphics (12 logical cores)
 RAM: 14.9 GiB
@@ -16,22 +16,22 @@ Raw server workers: 1
 
 | Server | Route | Connections | Req/s (median) | Avg ms | p50 ms | p99 ms | Max ms | Errors | Non-2xx |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| from-scratch | `/json` | 10 | 36,187 | 1.13 | 1.00 | 5.00 | 6 | 0 | 0 |
-| node:http | `/json` | 10 | 29,912 | 0.01 | 0.00 | 0.00 | 1 | 0 | 0 |
-| from-scratch | `/json` | 50 | 33,445 | 1.69 | 2.00 | 5.00 | 42 | 0 | 0 |
-| node:http | `/json` | 50 | 30,675 | 1.05 | 1.00 | 3.00 | 4 | 0 | 0 |
-| from-scratch | `/json` | 100 | 36,443 | 2.41 | 2.00 | 5.00 | 111 | 0 | 0 |
-| node:http | `/json` | 100 | 30,595 | 3.02 | 3.00 | 3.00 | 10 | 0 | 0 |
-| from-scratch | `/json` | 200 | 35,792 | 5.14 | 5.00 | 6.00 | 383 | 0 | 0 |
-| node:http | `/json` | 200 | 30,237 | 6.14 | 6.00 | 7.00 | 17 | 0 | 0 |
-| from-scratch | `/static/index.html` | 10 | 12,879 | 1.34 | 1.00 | 3.00 | 5 | 0 | 0 |
-| node:http | `/static/index.html` | 10 | 33,915 | 0.01 | 0.00 | 0.00 | 1 | 0 | 0 |
-| from-scratch | `/static/index.html` | 50 | 14,924 | 2.68 | 2.00 | 6.00 | 14 | 0 | 0 |
-| node:http | `/static/index.html` | 50 | 33,864 | 1.03 | 1.00 | 2.00 | 5 | 0 | 0 |
-| from-scratch | `/static/index.html` | 100 | 15,039 | 6.07 | 5.00 | 10.00 | 78 | 0 | 0 |
-| node:http | `/static/index.html` | 100 | 34,459 | 2.13 | 2.00 | 4.00 | 9 | 0 | 0 |
-| from-scratch | `/static/index.html` | 200 | 13,585 | 14.20 | 13.00 | 20.00 | 399 | 0 | 0 |
-| node:http | `/static/index.html` | 200 | 32,389 | 5.62 | 6.00 | 8.00 | 17 | 0 | 0 |
+| from-scratch | `/json` | 10 | 37,968 | 1.15 | 1.00 | 5.00 | 6 | 0 | 0 |
+| node:http | `/json` | 10 | 30,003 | 0.01 | 0.00 | 0.00 | 3 | 0 | 0 |
+| from-scratch | `/json` | 50 | 38,299 | 1.79 | 2.00 | 5.00 | 25 | 0 | 0 |
+| node:http | `/json` | 50 | 30,936 | 1.05 | 1.00 | 3.00 | 5 | 0 | 0 |
+| from-scratch | `/json` | 100 | 38,725 | 2.47 | 2.00 | 5.00 | 106 | 0 | 0 |
+| node:http | `/json` | 100 | 30,691 | 3.02 | 3.00 | 5.00 | 10 | 0 | 0 |
+| from-scratch | `/json` | 200 | 36,837 | 5.10 | 5.00 | 7.00 | 268 | 0 | 0 |
+| node:http | `/json` | 200 | 29,581 | 6.30 | 6.00 | 8.00 | 19 | 0 | 0 |
+| from-scratch | `/static/index.html` | 10 | 11,940 | 1.43 | 1.00 | 5.00 | 7 | 0 | 0 |
+| node:http | `/static/index.html` | 10 | 15,044 | 0.02 | 0.00 | 1.00 | 3 | 0 | 0 |
+| from-scratch | `/static/index.html` | 50 | 13,561 | 3.15 | 3.00 | 6.00 | 17 | 0 | 0 |
+| node:http | `/static/index.html` | 50 | 16,716 | 2.49 | 2.00 | 6.00 | 12 | 0 | 0 |
+| from-scratch | `/static/index.html` | 100 | 13,420 | 6.95 | 6.00 | 12.00 | 87 | 0 | 0 |
+| node:http | `/static/index.html` | 100 | 16,220 | 5.65 | 5.00 | 10.00 | 13 | 0 | 0 |
+| from-scratch | `/static/index.html` | 200 | 13,153 | 14.68 | 14.00 | 21.00 | 382 | 0 | 0 |
+| node:http | `/static/index.html` | 200 | 16,007 | 11.95 | 11.00 | 22.00 | 26 | 0 | 0 |
 
 ## Notes
 
