@@ -78,11 +78,14 @@ export function writeResponse(socket, options = {}) {
     ? EMPTY
     : (Buffer.isBuffer(body) ? body : Buffer.from(body));
 
-  const noBody = method === 'HEAD' || status === 204 || status === 304;
-  const length = noBody ? 0 : (contentLength ?? (stream ? undefined : bodyBuf.length));
+  const omitBody = method === 'HEAD' || status === 204 || status === 304;
+  const zeroLength = status === 204 || status === 304;
+  // HEAD keeps the Content-Length a GET would have returned (RFC 9110),
+  // while 204/304 responses genuinely have no representation.
+  const length = zeroLength ? 0 : (contentLength ?? (stream ? undefined : bodyBuf.length));
   const head = buildHead(status, headers, { keepAlive, contentLength: length ?? 0 });
 
-  if (noBody) {
+  if (omitBody) {
     socket.write(head);
     return Promise.resolve();
   }
