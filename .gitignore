@@ -1,2 +1,6 @@
 plan.md
-
+node_modules/
+*.log
+.DS_Store
+coverage/
+results/*.json

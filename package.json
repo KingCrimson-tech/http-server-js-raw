@@ -1,0 +1,30 @@
+{
+  "name": "raw-http-server",
+  "version": "1.0.0",
+  "description": "An HTTP/1.1 server implemented from scratch on raw TCP sockets in Node.js, scaled across CPU cores with the cluster module.",
+  "type": "module",
+  "main": "src/master.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/master.js",
+    "start:worker": "node src/worker.js",
+    "test": "node --test test/",
+    "test:watch": "node --test --watch test/",
+    "bench": "node bench/run.js"
+  },
+  "keywords": [
+    "http",
+    "tcp",
+    "net",
+    "cluster",
+    "server",
+    "parser",
+    "systems"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "autocannon": "^7.15.0"
+  }
+}
