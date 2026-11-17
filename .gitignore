@@ -1,4 +1,5 @@
 plan.md
+USAGE.md
 node_modules/
 *.log
 .DS_Store
