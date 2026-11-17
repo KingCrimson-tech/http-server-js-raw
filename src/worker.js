@@ -25,6 +25,10 @@ let shuttingDown = false;
 class Connection {
   constructor(socket) {
     this.socket = socket;
+    // Avoid the Nagle + delayed-ACK interaction: response head and body are
+    // separate writes for streamed responses, and coalescing them otherwise
+    // adds ~40ms of latency per response.
+    socket.setNoDelay(true);
     this.parser = new Parser({
       maxBufferSize: config.maxBufferSize,
       maxHeaderSize: config.maxHeaderSize,
