@@ -1,0 +1,8 @@
+body {
+  font: 16px system-ui, sans-serif;
+  max-width: 46rem;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  color: #222;
+}
+code { background: #eee; padding: .1rem .3rem; border-radius: 3px; }
