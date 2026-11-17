@@ -9,16 +9,9 @@ import { Parser } from './parser.js';
 import { writeResponse } from './response.js';
 import { errorResponse } from './errors.js';
 import { createRouter } from './router.js';
-import { Metrics } from './metrics.js';
 import { config } from './config.js';
 
-const startedAt = Date.now();
-const metrics = new Metrics();
-const router = createRouter({
-  config,
-  startTime: startedAt,
-  getMetrics: () => metrics.toPrometheus(),
-});
+const router = createRouter({ config, startTime: Date.now() });
 
 let shuttingDown = false;
 
@@ -91,7 +84,6 @@ class Connection {
   async process(req, keepAlive) {
     if (this.socket.destroyed) return;
 
-    const start = process.hrtime.bigint();
     const response = await router(req);
 
     try {
@@ -105,17 +97,6 @@ class Connection {
       this.socket.destroy();
       return;
     }
-
-    const durationMs = Number(process.hrtime.bigint() - start) / 1e6;
-    const bodyBytes = Buffer.isBuffer(response.body)
-      ? response.body.length
-      : Buffer.byteLength(response.body || '');
-    metrics.record({
-      method: req.method,
-      status: response.status,
-      durationMs,
-      bytes: response.contentLength ?? bodyBytes,
-    });
 
     if (this.socket.destroyed) return;
     this.socket.setTimeout(config.keepAliveTimeout);
@@ -131,7 +112,6 @@ class Connection {
       this.socket.destroy();
       return;
     }
-    metrics.record({ method: 'ERROR', status: result.status, durationMs: 0, bytes: 0 });
     this.socket.end();
   }
 }
@@ -158,15 +138,8 @@ function shutdown() {
 }
 
 if (process.send) {
-  const timer = setInterval(() => {
-    process.send({ type: 'metrics', payload: metrics.snapshot() });
-  }, config.metricsInterval);
-  timer.unref();
   process.on('message', (msg) => {
-    if (msg && msg.type === 'shutdown') {
-      clearInterval(timer);
-      shutdown();
-    }
+    if (msg && msg.type === 'shutdown') shutdown();
   });
 }
 

@@ -1,6 +1,6 @@
 # Raw HTTP Server
 
-An HTTP/1.1 server built from scratch on raw TCP sockets in Node.js — no framework, no `node:http` on the data plane. Scaled across CPU cores with `cluster`, with a hand-written parser, static file serving, and Prometheus metrics.
+An HTTP/1.1 server built from scratch on raw TCP sockets in Node.js — no framework, no `node:http` on the data plane. Scaled across CPU cores with `cluster`, with a hand-written parser and static file serving.
 
 ## Quick start
 
@@ -10,7 +10,7 @@ npm start
 curl http://localhost:3000/
 ```
 
-Data plane on `:3000`, Prometheus metrics on `:9090/metrics`.
+Listens on `:3000`.
 
 ## Scripts
 

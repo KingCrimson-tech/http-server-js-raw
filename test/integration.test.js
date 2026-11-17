@@ -182,9 +182,4 @@ test('HEAD has no body but keeps Content-Length', async () => {
   assert.ok(Number(res.headers['content-length']) > 0);
 });
 
-test('/metrics exposes Prometheus counters', async () => {
-  const [res] = splitResponses(await send(raw('GET', '/metrics')));
-  assert.equal(res.status, 200);
-  assert.match(res.body, /raw_http_requests_total \d+/);
-  assert.match(res.body, /raw_http_request_duration_ms_bucket\{le="10"\}/);
-});
+

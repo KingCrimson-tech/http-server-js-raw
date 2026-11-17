@@ -2,9 +2,7 @@ FROM node:20-alpine
 
 ENV NODE_ENV=production \
     HOST=0.0.0.0 \
-    PORT=3000 \
-    ADMIN_HOST=0.0.0.0 \
-    ADMIN_PORT=9090
+    PORT=3000
 
 WORKDIR /app
 
@@ -15,6 +13,6 @@ COPY src/ ./src/
 COPY public/ ./public/
 COPY bench/ ./bench/
 
-EXPOSE 3000 9090
+EXPOSE 3000
 
 CMD ["node", "src/master.js"]

@@ -3,13 +3,10 @@ services:
     build: .
     image: raw-http-server:latest
     ports:
-      - "3000:3000"   # data plane
-      - "9090:9090"   # admin /metrics (Prometheus format)
+      - "3000:3000"
     environment:
       HOST: 0.0.0.0
       PORT: 3000
-      ADMIN_HOST: 0.0.0.0
-      ADMIN_PORT: 9090
       WORKERS: ${WORKERS:-0}   # 0 = auto (all available CPUs)
     restart: unless-stopped
     healthcheck:

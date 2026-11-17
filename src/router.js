@@ -15,7 +15,6 @@ code{background:#eee;padding:.1rem .3rem;border-radius:3px}a{color:#06c}</style>
   <li><a href="/health">/health</a> &mdash; health check</li>
   <li><a href="/echo">/echo</a> &mdash; echo request metadata</li>
   <li><a href="/static/index.html">/static/index.html</a> &mdash; streamed static file</li>
-  <li><a href="/metrics">/metrics</a> &mdash; this worker's metrics</li>
 </ul>
 </body></html>`;
 
@@ -30,10 +29,9 @@ function json(body, status = 200) {
  * Create a route dispatcher.
  * @param {object} deps
  * @param {object} deps.config
- * @param {() => string} [deps.getMetrics] returns Prometheus text for /metrics
  * @param {number} [deps.startTime] process start time for uptime
  */
-export function createRouter({ config, getMetrics, startTime = Date.now() } = {}) {
+export function createRouter({ config, startTime = Date.now() } = {}) {
   const routes = new Map();
 
   const add = (path, methods, handler) => routes.set(path, { methods, handler });
@@ -59,12 +57,6 @@ export function createRouter({ config, getMetrics, startTime = Date.now() } = {}
     query: req.query,
     headers: req.headers,
     body: req.body.length > 0 ? req.body.toString('utf8') : '',
-  }));
-
-  add('/metrics', ['GET', 'HEAD'], () => ({
-    status: 200,
-    headers: { 'Content-Type': 'text/plain; version=0.0.4; charset=utf-8' },
-    body: getMetrics ? getMetrics() : '',
   }));
 
   return async function route(req) {

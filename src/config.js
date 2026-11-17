@@ -14,8 +14,6 @@ export const config = Object.freeze({
   // Network
   host: process.env.HOST || '0.0.0.0',
   port: int('PORT', 3000),
-  adminHost: process.env.ADMIN_HOST || '0.0.0.0',
-  adminPort: int('ADMIN_PORT', 9090),
 
   // Concurrency
   workers: int('WORKERS', os.availableParallelism?.() || os.cpus().length),
@@ -35,7 +33,4 @@ export const config = Object.freeze({
 
   // Static files
   staticDir: path.resolve(process.env.STATIC_DIR || path.join(ROOT, 'public')),
-
-  // Metrics
-  metricsInterval: int('METRICS_INTERVAL', 1000),
 });
